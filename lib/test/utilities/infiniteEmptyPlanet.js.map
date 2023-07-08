@@ -1,1 +1,0 @@
-{"version":3,"file":"infiniteEmptyPlanet.js","sourceRoot":"/","sources":["test/utilities/infiniteEmptyPlanet.ts"],"names":[],"mappings":"AAGA,MAAM,OAAO,mBAAmB;IAC9B,UAAU,CAAC,KAAY;QACrB,OAAO,KAAK,CAAC;IACf,CAAC;IAED,wBAAwB,CACtB,MAAa,EACb,iBAA0B,EAC1B,YAAqB;QAErB,OAAO,YAAY,EAAE,CAAC;IACxB,CAAC;CACF"}
