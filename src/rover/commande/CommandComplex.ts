@@ -8,7 +8,7 @@ export class CommandComplex implements roverCommandInterface {
   private readonly _next: roverCommandInterface = new CommandEmpty();
 
   public constructor(command: string) {
-    this._firstCommand = new SimpleCommand(command[0]);
+    this._firstCommand = new SimpleCommand(command);
 
     const remains = command.slice(1);
     if (remains.length > 0) this._next = new CommandComplex(remains);

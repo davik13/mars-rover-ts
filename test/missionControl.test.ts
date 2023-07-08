@@ -12,26 +12,20 @@ import { roverCommandInterface } from "../src/rover/commande/roverCommand.interf
 const each = require("jest-each").default;
 
 describe("MissionControl", () => {
-  const mockOrientation = jest.fn();
-  const mockPlanet = jest.fn();
-  const mockRoverInterpreter = jest.fn();
-  const mockRoverWithState = jest.fn();
-
   each(TestPrimitives.Orientations).it(
     "should move the rover if there are no obstacles on the path",
     (orientation: Orientation) => {
       const planet = new PlanetBuilder().withSize(10).build();
       const roverWithState = new RoverWithState(
         orientation,
-        new Position(new Point(new WholeNumber(0), new WholeNumber(0)), planet)
+        new Position(new Point(new WholeNumber(0), new WholeNumber(0)), planet),
       );
 
       const roverInterpreter = new RoverInterpreter(roverWithState);
       const missionControl = new MissionControl(
-        orientation,
         planet,
         roverInterpreter,
-        roverWithState
+        roverWithState,
       );
 
       const mockCommand: roverCommandInterface = {
@@ -39,22 +33,22 @@ describe("MissionControl", () => {
       };
       const mockPosition = new Position(
         new Point(new WholeNumber(0), new WholeNumber(0)),
-        planet
+        planet,
       );
       const hasObstacleOnPathMock = jest.spyOn(
         missionControl as any,
-        "hasObstacleOnPath"
+        "hasObstacleOnPath",
       );
       hasObstacleOnPathMock.mockReturnValue(false); // Set the mock return value to false
       const interpreterMock = jest.spyOn(
         RoverInterpreter.prototype,
-        "Interpreter"
+        "Interpreter",
       );
 
       missionControl.moveCoordinates(mockCommand);
 
       expect(hasObstacleOnPathMock).toHaveBeenCalledWith(mockPosition);
-      expect(interpreterMock).toHaveBeenCalledWith(mockCommand.executeOn);
-    }
+      expect(interpreterMock).toHaveBeenCalledWith(mockCommand);
+    },
   );
 });

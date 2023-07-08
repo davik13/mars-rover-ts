@@ -18,10 +18,10 @@ export class PlanetBuilder {
 
   public haveAnObstacleAtCoordinates(
     latitude: number,
-    longitude: number
+    longitude: number,
   ): PlanetBuilder {
     this._obstacles.push(
-      new Point(new WholeNumber(latitude), new WholeNumber(longitude))
+      new Point(new WholeNumber(latitude), new WholeNumber(longitude)),
     );
     return this;
   }
@@ -49,9 +49,9 @@ class EmptyToroidalPlanet implements Planet {
   }
 
   dependingOnAccessibility<T>(
-    point: Point,
-    actionIfObstacle: () => T,
-    actionIfFree: () => T
+    _point: Point,
+    _actionIfObstacle: () => T,
+    actionIfFree: () => T,
   ): T {
     return actionIfFree();
   }
@@ -78,7 +78,7 @@ class ObstacleDecorator implements Planet {
   dependingOnAccessibility<T>(
     point: Point,
     actionIfObstacle: () => T,
-    actionIfFree: () => T
+    actionIfFree: () => T,
   ): T {
     if (this.isAccessible(point)) {
       return actionIfFree();

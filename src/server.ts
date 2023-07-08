@@ -1,12 +1,12 @@
 import "reflect-metadata";
 
+import { createServer } from "http";
 import {
   createExpressServer,
   RoutingControllersOptions,
 } from "routing-controllers";
-import Websocket from "./src/websocket/websocket";
-import { createServer } from "http";
-import { InitNewMission } from "./src/initNewMission";
+import { InitNewMission } from "./initNewMission.js";
+import Websocket from "./websocket/websocket.js";
 
 require("dotenv").config();
 

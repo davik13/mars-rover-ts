@@ -1,4 +1,4 @@
-import { WholeNumber } from "../math/WholeNumber";
+import { WholeNumber } from "../math/WholeNumber.js";
 
 export class Point {
   private readonly _latitude: WholeNumber;

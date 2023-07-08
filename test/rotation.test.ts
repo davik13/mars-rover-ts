@@ -25,7 +25,7 @@ describe("FEATURE Rotation", () => {
       }
 
       expect(rover.Orientation).toEqual(final);
-    }
+    },
   );
 
   each([
@@ -43,13 +43,11 @@ describe("FEATURE Rotation", () => {
       "ALORS son orientation est %s",
     (init: Orientation, countNumber: number, final: Orientations) => {
       let rover = new RoverBuilder().havingForOrientation(init).build();
-
-      let orientationRover: Orientations = init;
       for (let rotations = 0; rotations < countNumber; rotations++) {
         rover = rover.turnLeft();
       }
 
       expect(rover.Orientation).toEqual(final);
-    }
+    },
   );
 });

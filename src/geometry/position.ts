@@ -16,25 +16,25 @@ export class Position {
 
   incrementLatitudeExceptObstacle(): Position {
     return this.goToDestinationBarringObstacles(
-      this._point.incrementLatitude()
+      this._point.incrementLatitude(),
     );
   }
 
   decrementLatitudeExceptObstacle(): Position {
     return this.goToDestinationBarringObstacles(
-      this._point.decrementLatitude()
+      this._point.decrementLatitude(),
     );
   }
 
   incrementLongitudeExpectObstacle(): Position {
     return this.goToDestinationBarringObstacles(
-      this._point.incrementLongitude()
+      this._point.incrementLongitude(),
     );
   }
 
   decrementLongitudeExpectObstacle(): Position {
     return this.goToDestinationBarringObstacles(
-      this._point.decrementLongitude()
+      this._point.decrementLongitude(),
     );
   }
 
@@ -42,7 +42,7 @@ export class Position {
     const finalPoint = this._planet.dependingOnAccessibility(
       this._point,
       () => this._point,
-      () => destinationPoint
+      () => destinationPoint,
     );
 
     return new Position(finalPoint, this._planet);

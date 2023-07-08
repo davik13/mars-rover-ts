@@ -14,32 +14,28 @@ export class RoverWithState implements RoverInterface {
   public turnRight(): RoverWithState {
     return new RoverWithState(
       this.Orientation.clockwiseRotation(),
-      this.Position
+      this.Position,
     );
   }
 
   public turnLeft(): RoverWithState {
     return new RoverWithState(
       this.Orientation.antiClockwiseRotation(),
-      this.Position
+      this.Position,
     );
   }
 
   public goAhead(): RoverWithState {
     return new RoverWithState(
       this.Orientation,
-      this.Orientation.goAhead(this.Position)
+      this.Orientation.goAhead(this.Position),
     );
   }
 
   public backOff(): RoverWithState {
     return new RoverWithState(
       this.Orientation,
-      this.Orientation.backoff(this.Position)
+      this.Orientation.backoff(this.Position),
     );
-  }
-
-  public getCurrentPosition(): Position {
-    return this.Position;
   }
 }

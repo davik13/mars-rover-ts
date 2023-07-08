@@ -1,14 +1,14 @@
-import { PlanetBuilder } from "./topology/planet.builder";
-import { Orientations } from "./topology/orientation";
-import { RoverInterpreter } from "./interpreter/roverInterpreter";
-import { RoverWithState } from "./rover/roverWithState";
-import { Position } from "./geometry/position";
-import { MissionControl } from "./missionControl/missionControl";
-import { WholeNumber } from "./math/WholeNumber";
-import { Point } from "./geometry/point";
+import { PlanetBuilder } from "./topology/planet.builder.js";
+import { Orientations } from "./topology/orientation.js";
+import { RoverInterpreter } from "./interpreter/roverInterpreter.js";
+import { RoverWithState } from "./rover/roverWithState.js";
+import { Position } from "./geometry/position.js";
+import { MissionControl } from "./missionControl/missionControl.js";
+import { WholeNumber } from "./math/WholeNumber.js";
+import { Point } from "./geometry/point.js";
 
 export class InitNewMission {
-  public startMission() {
+  public startMission(): MissionControl {
     const planetBuilder = new PlanetBuilder()
       .withSize(10)
       .haveAnObstacleAtCoordinates(2, 3)
@@ -18,16 +18,11 @@ export class InitNewMission {
     const orientation = Orientations.North;
     const roverWithState = new RoverWithState(
       orientation,
-      new Position(new Point(new WholeNumber(0), new WholeNumber(0)), planet)
+      new Position(new Point(new WholeNumber(0), new WholeNumber(0)), planet),
     );
 
     const roverInterpreter = new RoverInterpreter(roverWithState);
 
-    const missionControl = new MissionControl(
-      orientation,
-      planet,
-      roverInterpreter,
-      roverWithState
-    );
+    return new MissionControl(planet, roverInterpreter, roverWithState);
   }
 }
