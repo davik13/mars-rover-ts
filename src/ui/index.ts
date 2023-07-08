@@ -1,6 +1,6 @@
 import { Server, Socket } from "socket.io";
-import { roverCommandInterface } from "../rover/commande/roverCommand.interface";
-import { SimpleCommand } from "../rover/commande/SimpleCommand";
+import { roverCommandInterface } from "../rover/command/roverCommand.interface";
+import { SimpleCommand } from "../rover/command/SimpleCommand";
 import { InitNewMission } from "../initNewMission";
 
 interface ServerToClientEvents {

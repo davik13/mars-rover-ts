@@ -1,6 +1,6 @@
 import { RoverWithState } from "../rover/roverWithState";
 import { RoverInterface } from "../rover/rover.interface";
-import { roverCommandInterface } from "../rover/commande/roverCommand.interface";
+import { roverCommandInterface } from "../rover/command/roverCommand.interface";
 
 export class RoverInterpreter implements RoverInterface {
   private readonly _rover: RoverInterface;

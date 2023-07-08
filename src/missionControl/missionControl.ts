@@ -1,7 +1,7 @@
 import { Planet } from "../topology/planet.interface";
 import { RoverInterpreter } from "../interpreter/roverInterpreter";
 import { RoverWithState } from "../rover/roverWithState";
-import { roverCommandInterface } from "../rover/commande/roverCommand.interface";
+import { roverCommandInterface } from "../rover/command/roverCommand.interface";
 import { Position } from "../geometry/position";
 
 export class MissionControl {

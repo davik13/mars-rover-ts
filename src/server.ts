@@ -5,8 +5,10 @@ import {
   createExpressServer,
   RoutingControllersOptions,
 } from "routing-controllers";
-import { InitNewMission } from "./initNewMission.js";
-import Websocket from "./websocket/websocket.js";
+import { InitNewMission } from "./initNewMission";
+import { Response } from "express";
+import { roverCommandInterface } from "./rover/command/roverCommand.interface";
+import { SimpleCommand } from "./rover/command/SimpleCommand";
 
 require("dotenv").config();
 
@@ -23,13 +25,25 @@ const routingControllerOptions: RoutingControllersOptions = {
 
 const app = createExpressServer(routingControllerOptions);
 const httpServer = createServer(app);
-const io = Websocket.getInstance(httpServer);
 
-io.initializeHandlers([{ path: "/orders" }]);
+const mission = new InitNewMission();
+const missionControl = mission.startMission();
+
+app.get("/A", (_, res) => sendCommand("A", res));
+app.get("/R", (_, res) => sendCommand("R", res));
+app.get("/D", (_, res) => sendCommand("D", res));
+app.get("/G", (_, res) => sendCommand("G", res));
+
+function sendCommand(command: string, res: Response) {
+  const roverCommand: roverCommandInterface = new SimpleCommand(command);
+
+  missionControl.moveCoordinates(roverCommand);
+
+  res.send(`Command "${command}" sent successfully.`);
+}
 
 httpServer.listen(port, () => {
-  const mission = new InitNewMission();
-  mission.startMission();
-
   console.log(`The mission is started. listening on port: ${port}`);
 });
+
+export { sendCommand };

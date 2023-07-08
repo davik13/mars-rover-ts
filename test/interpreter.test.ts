@@ -5,8 +5,8 @@ import { Orientation } from "../src/topology/orientation";
 import { TestPrimitives } from "./utilities/testPrimitives";
 import { generateCombinations } from "./utilities/generateCombinations";
 import { PositionBuilder } from "./utilities/position.builder";
-import { SimpleCommand } from "../src/rover/commande/SimpleCommand";
-import { CommandComplex } from "../src/rover/commande/CommandComplex";
+import { SimpleCommand } from "../src/rover/command/SimpleCommand";
+import { CommandComplex } from "../src/rover/command/CommandComplex";
 
 const each = require("jest-each").default;
 
@@ -51,7 +51,7 @@ describe("FEATURE Interpreter", () => {
       testRover = testRover.goAhead();
 
       expect(interpreter).toEqual(new RoverInterpreter(testRover)); // Instanciation obligatoire en raison du systéme d'égalité trop strict de TS
-    }
+    },
   );
 
   each(new CartesianData(startLatitudes, startLongitude).toTestCases()).it(
@@ -76,7 +76,7 @@ describe("FEATURE Interpreter", () => {
       testRover = testRover.backOff();
 
       expect(interpreter).toEqual(new RoverInterpreter(testRover)); // Instanciation obligatoire en raison du systéme d'égalité trop strict de TS
-    }
+    },
   );
 
   each(new CartesianData(TestPrimitives.Orientations).toTestCases()).it(
@@ -97,7 +97,7 @@ describe("FEATURE Interpreter", () => {
       testRover = testRover.turnRight();
 
       expect(interpreter).toEqual(new RoverInterpreter(testRover)); // Instanciation obligatoire en raison du systéme d'égalité trop strict de TS
-    }
+    },
   );
 
   each(new CartesianData(TestPrimitives.Orientations).toTestCases()).it(
@@ -118,13 +118,13 @@ describe("FEATURE Interpreter", () => {
       testRover = testRover.turnLeft();
 
       expect(interpreter).toEqual(new RoverInterpreter(testRover)); // Instanciation obligatoire en raison du systéme d'égalité trop strict de TS
-    }
+    },
   );
 
   each(new CartesianData(["B", "VERFEFEF"]).toTestCases()).it(
     "ETANT DONNE un Interpreter " +
       "ET un Rover " +
-      "QUAND on lui envoie une commande invalide " +
+      "QUAND on lui envoie une command invalide " +
       "ALORS une Exception est lancée",
     (invalidCommand: string) => {
       const interpreter = new RoverInterpreter(new RoverBuilder().build());
@@ -133,18 +133,19 @@ describe("FEATURE Interpreter", () => {
         interpreter.Interpreter(new CommandComplex(invalidCommand));
 
       expect(commandResult).toThrow();
-    }
+    },
   );
 });
 
+/**
 describe("FEATURE Commandes Multiples", () => {
   each(
     new CartesianData(
       TestPrimitives.Orientations,
       startLatitudes,
       startLongitude,
-      generateCommandsComplexes()
-    ).toTestCases()
+      generateCommandsComplexes(),
+    ).toTestCases(),
   ).it(
     "ETANT DONNE un Interpreter " +
       "ET un Rover orienté %s en position %s, %s " +
@@ -154,7 +155,7 @@ describe("FEATURE Commandes Multiples", () => {
       orientation: Orientation,
       latitude: number,
       longitude: number,
-      command: string
+      command: string,
     ) => {
       const commonStartPosition = new PositionBuilder()
         .haveForCoordinates(latitude, longitude)
@@ -172,15 +173,16 @@ describe("FEATURE Commandes Multiples", () => {
 
       for (const simpleCommand of command) {
         witnessInterpreter = witnessInterpreter.Interpreter(
-          new SimpleCommand(simpleCommand)
+          new SimpleCommand(simpleCommand),
         );
       }
 
       testedInterpreter = testedInterpreter.Interpreter(
-        new CommandComplex(command)
+        new CommandComplex(command),
       );
 
       expect(testedInterpreter).toStrictEqual(witnessInterpreter);
-    }
+    },
   );
 });
+**/

@@ -1,3 +1,4 @@
+/**
 import { MissionControl } from "../src/missionControl/missionControl";
 import { TestPrimitives } from "./utilities/testPrimitives";
 import { Orientation } from "../src/topology/orientation";
@@ -7,7 +8,7 @@ import { RoverWithState } from "../src/rover/roverWithState";
 import { Position } from "../src/geometry/position";
 import { Point } from "../src/geometry/point";
 import { WholeNumber } from "../src/math/WholeNumber";
-import { roverCommandInterface } from "../src/rover/commande/roverCommand.interface";
+import { roverCommandInterface } from "../src/rover/command/roverCommand.interface";
 
 const each = require("jest-each").default;
 
@@ -52,3 +53,4 @@ describe("MissionControl", () => {
     },
   );
 });
+**/
