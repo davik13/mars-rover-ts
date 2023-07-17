@@ -29,6 +29,11 @@ const httpServer = createServer(app);
 const mission = new InitNewMission();
 const missionControl = mission.startMission();
 
+app.get("/", (_, res) => {
+  res.send(
+    "Welcome to Mars Rover Mission Control! \n Send command to rover: http://localhost:3000/{A|R|D|G}",
+  );
+});
 app.get("/A", (_, res) => sendCommand("A", res));
 app.get("/R", (_, res) => sendCommand("R", res));
 app.get("/D", (_, res) => sendCommand("D", res));
@@ -43,7 +48,7 @@ function sendCommand(command: string, res: Response) {
 }
 
 httpServer.listen(port, () => {
-  console.log(`The mission is started. listening on port: ${port}`);
+  console.log(`The mission is started. http://localhost:${port}/`);
 });
 
 export { sendCommand };
